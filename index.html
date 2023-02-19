@@ -8,13 +8,21 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <p>View high scores</p>
-    <h1 class="time" stlye="text-align:right"></h1>
-    <h1>Coding Quiz Challenge</h1>
-    <p class = "beginningText">try to answer the following code-related question within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-    
-    <button id = "Begin">Begin</button>
-    
+    <h1 class="time" ></h1>
+    <div id="begin" class ="">      
+      <h1>Coding Quiz Challenge</h1>
+      <p>try to answer the following code-related question within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+      <button id = "beginButton">Begin</button>
+    </div>
+    <div id="questions" class="hide">
+      <p>quesions</p>
+    </div>
+    <div id="scoreboard" class = "hide">
+      <p>scoreboard</p>
+    </div>
+    <div id="results" class = "hide">
+      <p>results</p>
+    </div>    
     <script src="assets/js/script.js"></script>
   </body>
 </html>
