@@ -29,12 +29,18 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 10px;
-    
-    
-    
+    padding: 10px;    
 }
 
+
+#viewScoreboard {
+    color: blue;
+    text-decoration: underline;
+}
+
+#viewScoreboard:hover {
+    color: rgb(131, 61, 197)
+}
 
 
 

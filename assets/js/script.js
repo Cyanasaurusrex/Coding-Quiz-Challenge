@@ -1,20 +1,24 @@
 var timeEl = document.getElementById('time');
-var secondsLeft = 15
+var secondsLeft = 50
 
 var beginButton = document.getElementById('beginButton');
-// variables for displaying question / answer
+// variables for displaying question / answer / score
 var title = document.getElementById('title')
 var option1 = document.getElementById('option1');
 var option2 = document.getElementById('option2');
 var option3 = document.getElementById('option3');
 var option4 = document.getElementById('option4');
 var verify = document.getElementById('verify')
+var displayScore = document.getElementById('displayScore')
 
 // variables for different stages of quiz
 var begin = document.getElementById('begin');
 var quiz = document.getElementById('quiz');
 var scoreboard = document.getElementById('scoreboard');
 var results = document.getElementById('results')
+var viewScoreboard = document.getElementById('viewScoreboard')
+var resultsContent = document.getElementById('resultsContent')
+var returnBegin = document.getElementById('returnBegin')
 
 // variables for logical operations
 var questionNumber = 0
@@ -71,9 +75,7 @@ function setTime() {
 // displays the next question
 function displayQuestion() {
   if (questionNumber  == questions.length) {
-    quiz.className = "hide"
-    timeEl.className = "hide"
-    results.className = ""
+    displayResults()
   }
   else{
     title.textContent = questions[questionNumber].title
@@ -83,20 +85,45 @@ function displayQuestion() {
     option4.textContent = questions[questionNumber].choices[3]
   }
 }
+
+function displayResults() {
+    quiz.className = "hide"
+    timeEl.className = "hide"
+    results.className = ""
+    scoreboard.className = "hide"
+    score = score + secondsLeft
+    resultsContent.textContent = "Your final score is " + score
+
+
+
+}
     
 // checks and displays results from previous question and shows next question
 function checkAnswer() {
   if (questions[questionNumber].choices[chosenAnswer] === questions[questionNumber].answer){
-    verify.textContent = "Your answer for question " + (questionNumber + 1) +" is correct!"    
+    verify.textContent = "Your answer for question " + (questionNumber + 1) +" is correct!"
+    correct()
   }
   else {
-    verify.textContent = "Your answer for question " + (questionNumber + 1) + " is wrong!"    
+    verify.textContent = "Your answer for question " + (questionNumber + 1) + " is wrong!" 
+    incorrect()   
   }  
   
   questionNumber = questionNumber + 1
   displayQuestion()
 
   return questionNumber
+}
+
+function correct() {
+  score = score + 10
+  displayScore.textContent = "Score: " + score
+  return score
+
+}
+
+function incorrect() {
+  secondsLeft = secondsLeft -10
 }
 
 
@@ -132,4 +159,18 @@ beginButton.addEventListener("click", function() {
   quiz.className = ""  
   setTime();
   displayQuestion();
+})
+
+viewScoreboard.addEventListener("click", function() {
+  begin.className = "hide"
+  quiz.className = "hide"
+  results.className = "hide"
+  scoreboard.className = ""
+})
+
+returnBegin.addEventListener("click", function() {
+  begin.className = ""
+  quiz.className = "hide"
+  results.className = "hide"
+  scoreboard.className = "hide"
 })
